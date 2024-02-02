@@ -2,15 +2,13 @@
 #display time (hours and minutes)
 
 hour=0
-
+minute=1
 while [ $hour -le 12 ]
 do
-
-minute=1
+echo "hour=$hour"
 
 while [ $minute -le 59 ]
-do 
-echo "$hour"
+do
 echo "$minute"
 
 ((minute++))
