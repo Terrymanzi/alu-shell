@@ -10,12 +10,10 @@ case $i in
 echo "bad luck from China"
 ;;
 
-case $i in
 9)
 echo "bad luck from Japan"
 ;;
 
-case $i in
 17)
 echo "bad luck from Italy"
 ;;
