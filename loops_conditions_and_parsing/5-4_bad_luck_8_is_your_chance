@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#display bad,good luck and best school
+
+i=1
+while [ $i -le 10 ]
+do
+
+if [ $i -eq 4 ]; then
+do 
+echo "bad luck"
+
+elif [ $i -eq 8 ]; then
+do
+echo "good luck"
+
+else
+do echo "Best School"
+
+fi
+
+((i++))
+
+done
