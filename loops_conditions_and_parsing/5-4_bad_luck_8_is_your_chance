@@ -6,15 +6,13 @@ while [ $i -le 10 ]
 do
 
 if [ $i -eq 4 ]; then
-do 
 echo "bad luck"
 
 elif [ $i -eq 8 ]; then
-do
 echo "good luck"
 
 else
-do echo "Best School"
+echo "Best School"
 
 fi
 
