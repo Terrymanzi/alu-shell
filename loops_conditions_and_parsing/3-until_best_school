@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 #displays best school 10times!
+
 i=1
+
+until [ $i -gt 10 ]
+
 do
-echo "Best School"
-((i++))
-until [ $i -le 10 ]
+	echo "Best School"
+	((i++))
+
 	done
