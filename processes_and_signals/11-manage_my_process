@@ -1,32 +1,36 @@
 #!/usr/bin/env bash
-#manage
-if [["$#" == "1" ]]; then
+# manage
+
+# Fixed spacing issue with the if statement
+if [[ "$#" == "1" ]]; then
   if [[ "$1" == "start" ]]; then
-   ./manage_my_process &
-     echo "$!" > /var/run/my_process.pid
-       echo "manage_my_process started"
-elif [[ "$1" == "stop" ]]; then
-  if test -f "/var/run/my_process.pid"; then
-    kill "$(cat /var/run/my_process.pid)"
-fi
+    ./manage_my_process &
+    echo "$!" > /var/run/my_process.pid
+    echo "manage_my_process started"
+  elif [[ "$1" == "stop" ]]; then
+    # Check if the PID file exists and is readable
+    if [[ -r "/var/run/my_process.pid" ]]; then
+      kill "$(cat /var/run/my_process.pid)"
+      rm /var/run/my_process.pid
+      echo "manage_my_process stopped"
+    else
+      echo "PID file not found. Is manage_my_process running?"
+    fi
+  elif [[ "$1" == "restart" ]]; then
+    # stop program
+    if [[ -r "/var/run/my_process.pid" ]]; then
+      kill "$(cat /var/run/my_process.pid)"
+      rm /var/run/my_process.pid
+    fi
 
-  rm /var/run/my_process.pid
-  echo "manage_my_process stopped"
-elif [[ "$1"  == "restart" ]]; then
-
-   # stop program
-     if test -f "/var/run/my_process.pid"; then
-     kill "$(cat /var/run/my_process.pid)"
-fi
-
-   # start program
-   ./manage_my_process &
-   echo "$!" > /var/run/my_process.pid
-   echo "manage_my_process restarted"
+    # start program
+    ./manage_my_process &
+    echo "$!" > /var/run/my_process.pid
+    echo "manage_my_process restarted"
+  else
+    echo "Usage: $0 {start|stop|restart}"
+  fi
 else
-   echo  "Usage: manage_my_process {start|stop|restart}"
-fi
-else
-   echo "Usage: manage_my_process {start|stop|restart}"
+  echo "Usage: $0 {start|stop|restart}"
 fi
 
