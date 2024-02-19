@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
-#i hate you
 
-echo $$ > "/var/run/myscript.pid"
-trap 'echo "Y U no love me?1"' SIGINT
-trap '"echo "I hate the kil commmand"; rm -f /vat/run/myscript.pid; exit 0' SIGTERM
+# Create /var/run/myscript.pid containing its own PID
+echo $$ > /var/run/myscript.pid
+
+# Trap SIGINT
+trap 'echo "Y U no love me?!"' SIGINT
+
+# Trap SIGTERM
+trap 'echo "I hate the kill command"; rm -f /var/run/myscript.pid; exit 0' SIGTERM
+
+# Trap SIGQUIT
 trap 'rm -f /var/run/myscript.pid; exit 0' SIGQUIT
-while true; do 
-	echo "To infinity and beyond"
-	sleep 1
+
+# Loop indefinitely
+while true; do
+    echo "To infinity and beyond"
+    sleep 1
 done
+
