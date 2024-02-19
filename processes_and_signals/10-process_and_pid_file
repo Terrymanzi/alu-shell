@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 #i hate you
-clean_up='rm /var/run/myscript.pid; exit $?'
 
 echo $$ > "/var/run/myscript.pid"
 trap 'echo "Y U no love me?1"' SIGINT
